@@ -1,14 +1,19 @@
 <?php
-$arr = $_POST[''];
+//Получаем массив методом POST.
+$arr = $_POST['arr'];
 
 // Создаем текущую метку времени.
-$time = time();
+$timestamp = time();
 
-// Создаем файл с именем текущей метки времени.
-$fp = fopen("c:\OSPanel\domains\Dima-test\\$time.csv", "w");
+//Открываем файл csv и присваиваем имя текущей метки времени.
+$fp = fopen(".\\$timestamp.csv", "w");
 
-foreach ($arr as $d) {
-  fputcsv($fp, $d);
+//Проверяем пустой ли массив.
+if($arr)
+    //Если нет, то перебираем его и добавляем данные в файл.
+    foreach ($arr as $d) {
+    fputcsv($fp, $d);
 }
 
+//Закрываем файл.
 fclose($fp);

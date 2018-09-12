@@ -27,13 +27,13 @@
   echo $date = $obj->items[0]->snippet->publishedAt; //дата публикации
 
 
-//  $video = new YouTubeVideo();
-//  $dataById = $video->videosByIds('FBnAZnfNB6U');
-//  echo $dataById;
+  //  $video = new YouTubeVideo();
+  //  $dataById = $video->videosByIds('FBnAZnfNB6U');
+  //  echo $dataById;
   ?>
 
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="./jquery-3.3.1.min.js"></script>
   <script src="/serch_10_elem.js"></script>
 </body>
 </html>

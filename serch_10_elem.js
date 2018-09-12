@@ -9,7 +9,7 @@ $(document).ready(function () {
       //В случаем успеха.
       success: function (data) {
         let youtube = $(data);
-        console.log($(document).append(data));
+        console.log(data, $(data));
       },
       //В случае ошибки выводим в консоль собщение.
       error: function (error) {

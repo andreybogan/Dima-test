@@ -1,2 +1,5 @@
-.idea
-
+/.idea
+/vendor
+composer.json
+composer.lock
+composer.phar

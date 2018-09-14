@@ -1,39 +1,29 @@
-<?php
-//include("class.php");
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Index</title>
+  <title>Поиск по YouTube.</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <button id="get">Получить</button>
-  <div id="container"></div>
-  <button id="save">Сохранить</button>
+  <div class="container">
+    <form action="#" id="formSearch">
+      <input type="text" id="searchValue" placeholder="Поиск видео на YouTube">
+      <button id="searchSubmit" type="submit">Найти</button>
+    </form>
 
-  <?php
-
-  $video_id = '0KSOMA3QBU0';
-  $api_key = 'AIzaSyB7oqNYxEGnskHEpKHSCbIH_-VI4_sJkzg';
-
-  $json_result =
-    file_get_contents("https://www.googleapis.com/youtube/v3/videos?part=snippet&id=$video_id&key=$api_key");
-  $obj = json_decode($json_result);
-
-  echo $title = $obj->items[0]->snippet->title; //название видео
-  echo $date = $obj->items[0]->snippet->publishedAt; //дата публикации
-
-
-  //  $video = new YouTubeVideo();
-  //  $dataById = $video->videosByIds('FBnAZnfNB6U');
-  //  echo $dataById;
-  ?>
+    <div id="searchContainer"></div>
+    <button id="searchSave" class="hide">Сохранить результат</button>
+  </div>
 
 
   <script src="./jquery-3.3.1.min.js"></script>
-  <script src="/serch_10_elem.js"></script>
+  <script src="./SearchYoutube.js"></script>
+  <script>
+    "use strict";
+
+    // Инициализируем объект поиска по Youtube.
+    new SearchYoutube();
+  </script>
 </body>
 </html>

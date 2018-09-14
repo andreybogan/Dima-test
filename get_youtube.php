@@ -1,44 +1,33 @@
 <?php
-
+// API ключ.
 $api_key = 'AIzaSyB7oqNYxEGnskHEpKHSCbIH_-VI4_sJkzg';
-$q = urlencode("63 покупка");
+// Поисковый запрос.
+$q = urlencode($_POST['search']);
+// Задаем группы свойств, которые должны быть возвращены для ресурса.
+$part = urlencode("snippet");
+// Максимальное количество элементов, которые должны быть возвращены.
+$maxResults = 10;
+// Задаем тип ресурса: video,channel,playlist.
+$type = 'video';
+// Инициируем пустой массив для полученных результатов.
+$arrResult = [];
+
+// Обращаемся к ресурсу google api с заданными параметрами и получаем содержимое в виде строки json.
 $json_result =
-  file_get_contents("https://www.googleapis.com/youtube/v3/search?part=snippet&q=$q&type=video&maxResults=3&key=$api_key");
+  file_get_contents("https://www.googleapis.com/youtube/v3/search?part=$part&q=$q&type=$type&maxResults=$maxResults&key=$api_key");
+
+// Декодируем строку json.
 $obj = json_decode($json_result);
 
-//echo $title = $obj->items[0]->snippet->title; //название видео
-//echo "<br>";
-//echo $id = $obj->items[0]->id->videoId; //дата публикации
-//echo "<br>";
-//echo $url = $obj->items[0]->snippet->thumbnails->default->url; //дата публикации
-//echo "<br>";
-//echo "<br>";
-
-// Выделяем из объекта элемент items.
-$newObj = $obj->items;
-
-// Обходим наш массив в цикле и формируем новый массив только из нужных нам элементов.
-foreach ($newObj as $list) {
-  echo "<pre>";
-  var_dump($list);
-  echo "-------------------------------------------------";
-  echo "</pre>";
+// Обходим полученный результат в цикле и формируем ассоциативный массив из нужных нам элементов.
+foreach ($obj->items as $list) {
+  $arrResult[] = [
+    "title" => $list->snippet->title,
+    "thumbnailsUrl" => $list->snippet->thumbnails->default->url,
+    "videoId" => $list->id->videoId,
+  ];
 }
-echo $title = $obj->items[1]->snippet->title; //название видео
-echo "<br>";
-echo $date = $obj->items[1]->snippet->publishedAt; //дата публикации
-echo "<br>";
-echo "<br>";
 
-echo $title = $obj->items[2]->snippet->title; //название видео
-echo "<br>";;
-echo $date = $obj->items[2]->statistics->viewCount; //дата публикации
-echo "<br>";
-echo "<br>";
-
-echo $title = $obj->items[3]->snippet->title; //название видео
-echo "<br>";
-echo $date = $obj->items[3]->snippet->publishedAt; //дата публикации
-
-//$homepage = file_get_contents('https://www.youtube.com/results?search_query=63+%D0%BF%D0%BE%D0%BA%D1%83%D0%BF%D0%BA%D0%B8');
-//echo $homepage;
+// Возвращаем json-представление данных.
+$arrResult = json_encode($arrResult, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+echo $arrResult;

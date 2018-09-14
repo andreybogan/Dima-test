@@ -1,0 +1,62 @@
+html {
+    font-size: 14px;
+}
+
+body {
+    padding: 16px;
+    color: #222;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
+input::-webkit-input-placeholder {
+    color: #a4a4a4;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.container {
+    width: 700px;
+    margin: 0 auto;
+}
+#searchValue {
+    padding: 2px 6px;
+    width: 400px;
+    height: 36px;
+    font-size: 1rem;
+
+}
+
+#searchSubmit {
+    height: 36px;
+    padding: 2px 12px;
+    font-size: 1rem;
+}
+#searchContainer {
+    display: block;
+    width: 680px;
+    margin: 24px 0;
+}
+.video-item {
+    padding: 12px;
+    display: flex;
+}
+.video-item img {
+    margin-right: 24px;
+}
+
+#searchSave {
+    height: 36px;
+    padding: 2px 12px;
+    font-size: 1rem;
+}
+
+.hide {
+    display: none;
+}
